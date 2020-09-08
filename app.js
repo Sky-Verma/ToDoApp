@@ -1,10 +1,14 @@
+//This js file is loaded after the html one
+
 document.addEventListener("DOMContentLoaded", () => {
-    //Add Item function
+  //Enter button will add task to the list
     document.addEventListener('keypress', (e) => {
         if (e.keyCode === 13) {
             document.querySelector(".input-btn").click();
         }
     });
+    
+    //Task done function
     const checkItem = (e) => {
         e.preventDefault();
         if (e.target.localName == "svg") {
@@ -16,6 +20,8 @@ console.log(parentBtn.parentElement.innerHTML)
             console.log(parentBtn.innerHTML)
         }
     }
+    
+    //Task delete function
     const deleteItem = (e) => {
 
         e.preventDefault();
@@ -33,7 +39,7 @@ console.log(parentBtn.parentElement.innerHTML)
 
 
     }
-    //Delete and Check button
+   //Add task function
     const addItem = () => {
 
         var input = document.querySelector(".todo-input");
@@ -43,9 +49,6 @@ console.log(parentBtn.parentElement.innerHTML)
             console.log("It worked.");
         } else {
             var li = document.createElement('li');
-
-            // li.innerHTML = input.value + ' <button id="fa-trash"> </button> <button id="fa-check"> ///<i class="fas fa-check"></i></button>';
-
             var del = document.createElement('button');
             var check = document.createElement('button');
             check.innerHTML = '<i class="fas fa-check"></i>';
@@ -56,11 +59,13 @@ console.log(parentBtn.parentElement.innerHTML)
             li.append(del);
             li.append(check);
             document.getElementById('main-list').append(li);
+            //Adding event listeners
             del.addEventListener('click', deleteItem);
             check.addEventListener("click", checkItem);
-
+            //Clearing textbox
             input.value = "";
         }
     }
+    //Event listener for adding task
     document.querySelector(".input-btn").addEventListener("click", addItem);
 })
